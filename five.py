@@ -4,12 +4,16 @@
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 from three import factor
+from operator import mul
 
 def unfactor(mylist):
-    product=1
-    for (n,times) in mylist:
-        product=product*(n**times)
-    return product
+    return reduce(mul,[a**b for (a,b) in mylist])
+
+# def unfactor(mylist):
+    # product=1
+    # for (n,times) in mylist:
+    #     product=product*(n**times)
+    # return product
 
 def lcm(listofints):
     factors=dict()
@@ -17,7 +21,6 @@ def lcm(listofints):
         for key in d.keys():
             if (not factors.has_key(key)) or (d[key]>factors[key]):
                 factors[key]=d[key]
-    # print factors.items()
     return(unfactor(factors.items()))
 
 if __name__ == "__main__":

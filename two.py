@@ -9,7 +9,6 @@ MAX=4000000
 mSum=0
 
 while (a<MAX):
-    # print a
     if (0==a%2):
         mSum=mSum+a
 

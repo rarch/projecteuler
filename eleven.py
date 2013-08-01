@@ -38,7 +38,6 @@ maxprod,maxfactors=0,[]
 # horizontal products
 for row in xrange(0,dim):
     for col in xrange(0,dim-(multiplicands-1)):
-        # print row,col
         cand,factors=1,[]
         for i in xrange(col,col+multiplicands):
             cand=cand*parsed[row][i]
@@ -49,13 +48,13 @@ for row in xrange(0,dim):
 # vertical products
 for col in xrange(0,dim):
     for row in xrange(0,dim-(multiplicands-1)):
-        # print row,col
         cand,factors=1,[]
         for i in xrange(row,row+multiplicands):
             cand=cand*parsed[i][col]
             factors=factors+[parsed[i][col]]
         if cand>maxprod:
             maxprod,maxfactors=cand,factors
+            
 # right descending products
 for row in xrange(0,dim-multiplicands+1):
     for col in xrange(0,dim-(multiplicands-1)):
