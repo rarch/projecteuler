@@ -32,11 +32,8 @@ parsed = [map(int,line.split(' ')) for line in grid.split('\n')]
 #     horiz=lengths[0]
 # vert = len(parsed)
 
-dim=len(parsed)
-multiplicands=4
-
-maxprod=0
-maxfactors=[]
+dim,multiplicands=len(parsed),4
+maxprod,maxfactors=0,[]
 
 # horizontal products
 for row in xrange(0,dim):
@@ -48,7 +45,6 @@ for row in xrange(0,dim):
             factors=factors+[parsed[row][i]]
         if cand>maxprod:
             maxprod,maxfactors=cand,factors
-# print factors
 
 # vertical products
 for col in xrange(0,dim):
@@ -60,8 +56,6 @@ for col in xrange(0,dim):
             factors=factors+[parsed[i][col]]
         if cand>maxprod:
             maxprod,maxfactors=cand,factors
-# print factors
-
 # right descending products
 for row in xrange(0,dim-multiplicands+1):
     for col in xrange(0,dim-(multiplicands-1)):
@@ -71,7 +65,6 @@ for row in xrange(0,dim-multiplicands+1):
             factors=factors+[parsed[row+i][col+i]]
         if cand>maxprod:
             maxprod,maxfactors=cand,factors
-# print factors
 
 # right ascending products
 for row in xrange((multiplicands-1),dim):
@@ -82,6 +75,5 @@ for row in xrange((multiplicands-1),dim):
             factors=factors+[parsed[row-i][col+i]]
         if cand>maxprod:
             maxprod,maxfactors=cand,factors
-# print factors
-
-print maxprod, maxfactors
+            
+print maxprod#, maxfactors
