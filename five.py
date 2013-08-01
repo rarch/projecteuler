@@ -17,19 +17,9 @@ def lcm(listofints):
         for key in d.keys():
             if (not factors.has_key(key)) or (d[key]>factors[key]):
                 factors[key]=d[key]
-    print factors.items()
+    # print factors.items()
     return(unfactor(factors.items()))
 
 if __name__ == "__main__":
-
     # print lcm([i for i in xrange(1,10)])
     print lcm([i for i in xrange(1,21)])
-
-# def factoredlcm(listofints):
-#     product=1
-#     listofints=sorted(list(set(listofints)),reverse=True)
-#     for i in listofints:
-#         print i, product
-#         if product%i and i>0:
-#             product=product*i
-#     return product
