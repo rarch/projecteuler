@@ -103,11 +103,29 @@
 # 20849603980134001723930671666823555245252804609722
 # 53503534226472524250874054075591789781264330331690
 
+# Do I want to implement an adder?
+def add(listofstrs):
+    # sort longest to shortest, get max length
+    ordered=sorted(listofstrs,key=len,reverse=True)
+    s,outstr=0,''
+    n=len(ordered[0])
+    # go through [-1] digit first, convert to int
+    for i in xrange(1,n+1):
+        for item in ordered:
+            s=s+int(item[-i])
+        outstr=str(s)[-1]+outstr
+        s=int(str(s)[0:-1])
+
+    outstr=str(s)+outstr
+    return outstr
+
 with open("./data/fifties.txt",'r') as f:
     lines=f.read()
 
-# Do I want to implement an adder?
+parsed=[line.strip() for line in lines.split('\n')]
+S = add(parsed) # is str
 
-parsed=[int(line.strip()) for line in lines.split('\n')]
-S=sum(parsed)
+# parsed=[int(line.strip()) for line in lines.split('\n')]
+# S = sum(parsed) # is int
+
 print str(S)[0:10]
