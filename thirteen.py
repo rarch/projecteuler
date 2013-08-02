@@ -112,8 +112,11 @@ def add(listofstrs):
     # go through [-1] digit first, convert to int
     for i in xrange(1,n+1):
         for item in ordered:
+            # sum the last digits
             s=s+int(item[-i])
+        # keep the last digit for the string
         outstr=str(s)[-1]+outstr
+        # push the rest back into the adder
         s=int(str(s)[0:-1])
 
     outstr=str(s)+outstr
@@ -125,6 +128,7 @@ with open("./data/fifties.txt",'r') as f:
 parsed=[line.strip() for line in lines.split('\n')]
 S = add(parsed) # is str
 
+# Simple solution taking advantage of python
 # parsed=[int(line.strip()) for line in lines.split('\n')]
 # S = sum(parsed) # is int
 
