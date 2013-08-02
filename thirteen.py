@@ -108,7 +108,10 @@ def add(listofstrs):
     # sort longest to shortest, get max length
     ordered=sorted(listofstrs,key=len,reverse=True)
     s,outstr=0,''
-    n=len(ordered[0])
+
+    # l=[i for i in listofstrs]
+    n=len(ordered[0]) # max(map(len,l))
+
     # go through [-1] digit first, convert to int
     for i in xrange(1,n+1):
         for item in ordered:
@@ -135,4 +138,4 @@ S = add(parsed) # is str
 # parsed=[int(line.strip()) for line in lines.split('\n')]
 # S = sum(parsed) # is int
 
-print str(S)
+print str(S)[0:10]
