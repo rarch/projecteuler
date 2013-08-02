@@ -2,6 +2,7 @@ projecteuler
 ============
 
 solutions to project euler problems
+at http://projecteuler.net
 
 1:233168
 2:4613732
