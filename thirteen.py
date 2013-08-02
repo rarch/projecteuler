@@ -113,7 +113,10 @@ def add(listofstrs):
     for i in xrange(1,n+1):
         for item in ordered:
             # sum the last digits
-            s=s+int(item[-i])
+            try:
+                s=s+int(item[-i])
+            except IndexError: # what if this number is short??
+                ordered.remove(item)
         # keep the last digit for the string
         outstr=str(s)[-1]+outstr
         # push the rest back into the adder
@@ -132,4 +135,4 @@ S = add(parsed) # is str
 # parsed=[int(line.strip()) for line in lines.split('\n')]
 # S = sum(parsed) # is int
 
-print str(S)[0:10]
+print str(S)
