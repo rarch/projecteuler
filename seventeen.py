@@ -20,7 +20,7 @@ REALLY="and" # is that really necessary? only for decimals, right?
 def upto99(n):
     if n in numbers.keys():
         return numbers[n]
-    return " ".join([numbers[(n/10)*10],numbers[n%10]])
+    return "-".join([numbers[(n/10)*10],numbers[n%10]])
 
 def upto999(n):
     if n<100:
@@ -50,7 +50,6 @@ def numToWord(n):
 
 s=0
 for i in xrange(1,1001):
-    # print numToWord(i)
-    s=s+len(numToWord(i).replace(" ",""))
+    s=s+len(numToWord(i).replace(" ","").replace("-",""))
 
 print s
