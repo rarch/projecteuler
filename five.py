@@ -3,17 +3,17 @@
 # 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-from three import factor
+from util import factor
 from operator import mul
 
 def unfactor(mylist):
     return reduce(mul,[a**b for (a,b) in mylist])
 
-# def unfactor(mylist):
-    # product=1
-    # for (n,times) in mylist:
-    #     product=product*(n**times)
-    # return product
+def unfactor_alt(mylist):
+    product=1
+    for (n,times) in mylist:
+        product=product*(n**times)
+    return product
 
 def lcm(listofints):
     factors=dict()
@@ -23,6 +23,9 @@ def lcm(listofints):
                 factors[key]=d[key]
     return(unfactor(factors.items()))
 
-if __name__ == "__main__":
+def main():
     # print lcm([i for i in xrange(1,10)])
     print lcm([i for i in xrange(1,21)])
+
+if __name__ == "__main__":
+    main()

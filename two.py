@@ -4,14 +4,18 @@
 # 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-a,b=1,1
-MAX=4000000
-mSum=0
+def main():
+    a,b=1,1
+    MAX=4000000
+    mSum=0
 
-while (a<MAX):
-    if (0==a%2):
-        mSum=mSum+a
+    while (a<MAX):
+        if (0==a%2):
+            mSum=mSum+a
 
-    b,a=b+a,b
+        b,a=b+a,b
 
-print mSum
+    print mSum
+
+if __name__ == "__main__":
+    main()

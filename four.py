@@ -6,9 +6,20 @@
 from itertools import product
 
 # palindromic=lambda val: val==int(''.join(reversed([c for c in str(val)])))
-palindromic=lambda num: str(num) == str(num)[::-1]
+# palindromic=lambda num: str(num) == str(num)[::-1]
 
-# multiples = ( (a, b) for a, b in product(xrange(100,1000), repeat=2) if palindromic(a*b) )
-# print (lambda e:(e[0],e[1],e[0]*e[1])) (max(multiples, key=lambda (a,b): a*b))
+def palindromic_alt(val):
+    return (val==int(''.join(reversed([c for c in str(val)]))))
 
-print max( a*b for a, b in product(xrange(100,1000), repeat=2) if palindromic(a*b) )
+def palindromic(num):
+    return (str(num)==str(num)[::-1])
+
+def main_alt():
+    multiples = ( (a, b) for a, b in product(xrange(100,1000), repeat=2) if palindromic_alt(a*b) )
+    print (lambda e:(e[0],e[1],e[0]*e[1])) (max(multiples, key=lambda (a,b): a*b))[-1]
+
+def main():
+    print max( a*b for a, b in product(xrange(100,1000), repeat=2) if palindromic(a*b) )
+
+if __name__ == "__main__":
+    main()

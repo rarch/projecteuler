@@ -23,15 +23,21 @@
 #     "05886116467109405077541002256983155200055935729725"\
 #     "71636269561882670428252483600823257530420752963450"
 
-with open("./data/largenumber.txt",'r') as f:
-    data=f.read()
-mNum=''.join(line.strip() for line in data)
+from util import fread
 
-i,length=0,5
-mMax,mStr=0,''
+def main():
+    data=fread("./data/largenumber.txt")
 
-for i in xrange(0,len(mNum)-length+1):
-    product=reduce(lambda x,y:int(x)*int(y),mNum[i:i+length],1)
-    if product>mMax:
-        mMax,mStr=product,mNum[i:i+length]
-print mMax#,'(\''+mStr+'\')'
+    mNum=''.join(line.strip() for line in data)
+
+    i,length=0,5
+    mMax,mStr=0,''
+
+    for i in xrange(0,len(mNum)-length+1):
+        product=reduce(lambda x,y:int(x)*int(y),mNum[i:i+length],1)
+        if product>mMax:
+            mMax,mStr=product,mNum[i:i+length]
+    print mMax#,'(\''+mStr+'\')'
+
+if __name__ == "__main__":
+    main()

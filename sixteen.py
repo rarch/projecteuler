@@ -7,29 +7,34 @@ def sumDig(n):
     digits = map(int,str(n))
     return sum(digits)
 
-# def doubleIt(mstr):
-#     l=len(mstr)
-#     res=''
-#     hi=0
+def doubleIt(mstr):
+    l=len(mstr)
+    res=''
+    hi=0
 
-#     for i in xrange(l-1,-1,-1):
-#         dig = int(mstr[i])
-#         ret = 2*dig + hi
-#         hi = ret/10
-#         res = str(ret%10)+res
-#     if hi:
-#         res = str(hi)+res
-#     return res
+    for i in xrange(l-1,-1,-1):
+        dig = int(mstr[i])
+        ret = 2*dig + hi
+        hi = ret/10
+        res = str(ret%10)+res
+    if hi:
+        res = str(hi)+res
+    return res
 
-# inpt='1'
-# c=0
-# while c<1000: 
-#     inpt=doubleIt(inpt)
-#     c=c+1
+def main_alt():
+    inpt='1'
+    c=0
+    while c<1000: 
+        inpt=doubleIt(inpt)
+        c=c+1
 
-# s=0
-# for i in xrange(0,len(inpt)):
-#     s=s+int(inpt[i])
-# print s
+    s=0
+    for i in xrange(0,len(inpt)):
+        s=s+int(inpt[i])
+    print s
 
-print sumDig(2**1000)
+def main():
+    print sumDig(2**1000)
+
+if __name__ == "__main__":
+    main()

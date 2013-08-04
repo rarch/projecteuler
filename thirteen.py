@@ -103,6 +103,8 @@
 # 20849603980134001723930671666823555245252804609722
 # 53503534226472524250874054075591789781264330331690
 
+from util import fread
+
 # Do I want to implement an adder?
 def add(listofstrs):
     # sort longest to shortest, get max length
@@ -128,14 +130,21 @@ def add(listofstrs):
     outstr=str(s)+outstr
     return outstr
 
-with open("./data/fifties.txt",'r') as f:
-    lines=f.read()
+def main():
+    lines=fread("./data/fifties.txt")
 
-parsed=[line.strip() for line in lines.split('\n')]
-S = add(parsed) # is str
+    parsed=[line.strip() for line in lines.split('\n')]
+    S = add(parsed) # is str
 
-# Simple solution taking advantage of python
-# parsed=[int(line.strip()) for line in lines.split('\n')]
-# S = sum(parsed) # is int
+    print str(S)[0:10]
 
-print str(S)[0:10]
+def main_alt():
+    lines=fread("./data/fifties.txt")
+    # Simple solution taking advantage of python
+    parsed=[int(line.strip()) for line in lines.split('\n')]
+    S = sum(parsed) # is int
+
+    print str(S)[0:10]
+
+if __name__ == "__main__":
+    main()

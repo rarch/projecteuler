@@ -24,18 +24,23 @@ def getTri(n):
             n=n-1
     return tri
 
-def numfactors(n):
+def numfactors_alt(n):
     return 0 if n<1 else 1 if n<2 else reduce(mul,[b+1 for (a,b) in factor(n)])
 
-# def nfactors(n):
-#     return len(set(reduce(list.__add__,([i,n/i] for i in range(1,int(n**0.5)+1)if n%i==0))))
+def numfactors(n):
+    return len(set(reduce(list.__add__,([i,n/i] for i in range(1,int(n**0.5)+1)if n%i==0))))
 
-# return reduce(mul,[a**b for (a,b) in mylist])
+def unfactor(factorization):
+    return reduce(mul,[a**b for (a,b) in factorization])
 
-i=fs=0
-while (fs<=500):
-    i=i+1
-    tri = getTri(i)
-    fs = numfactors(tri) # nfactors(tri)
+def main():
+    i=fs=0
+    while (fs<=500):
+        i=i+1
+        tri = getTri(i)
+        fs = numfactors(tri)
 
-print tri
+    print tri
+
+if __name__ == "__main__":
+    main()

@@ -48,8 +48,12 @@ def nonZeroToWord(n):
 def numToWord(n):
     return nonZeroToWord(n) if n else "zero"
 
-s=0
-for i in xrange(1,1001):
-    s=s+len(numToWord(i).replace(" ","").replace("-",""))
+def main():
+    s=0
+    for i in xrange(1,1001):
+        s=s+len(numToWord(i).replace(" ","").replace("-",""))
 
-print s
+    print s
+
+if __name__ == "__main__":
+    main()    

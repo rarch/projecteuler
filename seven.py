@@ -28,6 +28,10 @@ def quicksieve(index):
 
     return primes
 
-# primes=quicksieve(6)
-primes=quicksieve(10001)
-print primes[-1]
+def main():
+    # primes=quicksieve(6)
+    primes=quicksieve(10001)
+    print primes[-1]
+
+if __name__ == "__main__":
+    main()    

@@ -19,5 +19,9 @@ def quicksieve(maxval):
 
     return primes
 
-primes=quicksieve(2000000)
-print sum(primes)
+def main():
+    primes=quicksieve(2000000)
+    print sum(primes)
+
+if __name__ == "__main__":
+    main()

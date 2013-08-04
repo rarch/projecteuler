@@ -25,56 +25,62 @@
 #     '20 73 35 29 78 31 90 01 74 31 49 71 48 86 81 16 23 57 05 54\n'\
 #     '01 70 54 71 83 51 54 69 16 92 33 48 61 43 52 01 89 19 67 48'
 
-with open("./data/grid.txt",'r') as f:
-    data=f.read()
-parsed = [map(int,line.split(' ')) for line in data.split('\n')]
+from util import fread
 
-# lengths=(list(set(map(len,parsed))))
-# if len(lengths)==1: # one length
-#     horiz=lengths[0]
-# vert = len(parsed)
+def main():
+    data=fread("./data/grid.txt")
 
-dim,multiplicands=len(parsed),4
-maxprod,maxfactors=0,[]
+    parsed = [map(int,line.split(' ')) for line in data.split('\n')]
 
-# horizontal products
-for row in xrange(0,dim):
-    for col in xrange(0,dim-(multiplicands-1)):
-        cand,factors=1,[]
-        for i in xrange(col,col+multiplicands):
-            cand=cand*parsed[row][i]
-            factors=factors+[parsed[row][i]]
-        if cand>maxprod:
-            maxprod,maxfactors=cand,factors
+    # lengths=(list(set(map(len,parsed))))
+    # if len(lengths)==1: # one length
+    #     horiz=lengths[0]
+    # vert = len(parsed)
 
-# vertical products
-for col in xrange(0,dim):
-    for row in xrange(0,dim-(multiplicands-1)):
-        cand,factors=1,[]
-        for i in xrange(row,row+multiplicands):
-            cand=cand*parsed[i][col]
-            factors=factors+[parsed[i][col]]
-        if cand>maxprod:
-            maxprod,maxfactors=cand,factors
-            
-# right descending products
-for row in xrange(0,dim-multiplicands+1):
-    for col in xrange(0,dim-(multiplicands-1)):
-        cand,factors=1,[]
-        for i in xrange(0,multiplicands):
-            cand=cand*parsed[row+i][col+i]
-            factors=factors+[parsed[row+i][col+i]]
-        if cand>maxprod:
-            maxprod,maxfactors=cand,factors
+    dim,multiplicands=len(parsed),4
+    maxprod,maxfactors=0,[]
 
-# right ascending products
-for row in xrange((multiplicands-1),dim):
-    for col in xrange(0,dim-(multiplicands-1)):
-        cand,factors=1,[]
-        for i in xrange(0,multiplicands):
-            cand=cand*parsed[row-i][col+i]
-            factors=factors+[parsed[row-i][col+i]]
-        if cand>maxprod:
-            maxprod,maxfactors=cand,factors
-            
-print maxprod#, maxfactors
+    # horizontal products
+    for row in xrange(0,dim):
+        for col in xrange(0,dim-(multiplicands-1)):
+            cand,factors=1,[]
+            for i in xrange(col,col+multiplicands):
+                cand=cand*parsed[row][i]
+                factors=factors+[parsed[row][i]]
+            if cand>maxprod:
+                maxprod,maxfactors=cand,factors
+
+    # vertical products
+    for col in xrange(0,dim):
+        for row in xrange(0,dim-(multiplicands-1)):
+            cand,factors=1,[]
+            for i in xrange(row,row+multiplicands):
+                cand=cand*parsed[i][col]
+                factors=factors+[parsed[i][col]]
+            if cand>maxprod:
+                maxprod,maxfactors=cand,factors
+                
+    # right descending products
+    for row in xrange(0,dim-multiplicands+1):
+        for col in xrange(0,dim-(multiplicands-1)):
+            cand,factors=1,[]
+            for i in xrange(0,multiplicands):
+                cand=cand*parsed[row+i][col+i]
+                factors=factors+[parsed[row+i][col+i]]
+            if cand>maxprod:
+                maxprod,maxfactors=cand,factors
+
+    # right ascending products
+    for row in xrange((multiplicands-1),dim):
+        for col in xrange(0,dim-(multiplicands-1)):
+            cand,factors=1,[]
+            for i in xrange(0,multiplicands):
+                cand=cand*parsed[row-i][col+i]
+                factors=factors+[parsed[row-i][col+i]]
+            if cand>maxprod:
+                maxprod,maxfactors=cand,factors
+                
+    print maxprod#, maxfactors
+
+if __name__ == "__main__":
+    main()
