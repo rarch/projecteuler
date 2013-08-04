@@ -13,7 +13,12 @@
 # We can see that 28 is the first triangle number to have over five divisors.
 # What is the value of the first triangle number to have over five hundred divisors?
 
-from three import factor
+import os, sys
+dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
+util_dir = dirname+"/../util/"
+sys.path.append(util_dir)
+
+from util import factor
 from operator import mul
 
 def getTri(n):

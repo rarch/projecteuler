@@ -23,10 +23,16 @@
 #     "05886116467109405077541002256983155200055935729725"\
 #     "71636269561882670428252483600823257530420752963450"
 
+import os, sys
+dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
+util_dir = dirname+"/../util/"
+data_dir = dirname+"/../data/"
+sys.path.append(util_dir)
+
 from util import fread
 
 def main():
-    data=fread("./data/largenumber.txt")
+    data=fread(data_dir+"largenumber.txt")
 
     mNum=''.join(line.strip() for line in data)
 

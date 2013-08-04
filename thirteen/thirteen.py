@@ -103,6 +103,12 @@
 # 20849603980134001723930671666823555245252804609722
 # 53503534226472524250874054075591789781264330331690
 
+import os, sys
+dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
+util_dir = dirname+"/../util/"
+data_dir = dirname+"/../data/"
+sys.path.append(util_dir)
+
 from util import fread
 
 # Do I want to implement an adder?
@@ -131,7 +137,7 @@ def add(listofstrs):
     return outstr
 
 def main():
-    lines=fread("./data/fifties.txt")
+    lines=fread(data_dir+"fifties.txt")
 
     parsed=[line.strip() for line in lines.split('\n')]
     S = add(parsed) # is str
@@ -139,7 +145,7 @@ def main():
     print str(S)[0:10]
 
 def main_alt():
-    lines=fread("./data/fifties.txt")
+    lines=fread(data_dir+"fifties.txt")
     # Simple solution taking advantage of python
     parsed=[int(line.strip()) for line in lines.split('\n')]
     S = sum(parsed) # is int

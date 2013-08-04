@@ -5,6 +5,11 @@
 # and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.
 # Find the sum of the digits in the number 100!
 
+import os, sys
+dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
+util_dir = dirname+"/../util/"
+sys.path.append(util_dir)
+
 from util import sumDig
 from math import factorial
 

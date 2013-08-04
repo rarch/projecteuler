@@ -29,6 +29,12 @@
 
 # NOTE: As there are only 16384 routes, it is possible to solve this problem by trying every route. However, Problem 67, is the same challenge with a triangle containing one-hundred rows; it cannot be solved by brute force, and requires a clever method! ;o)
 
+import os, sys
+dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
+util_dir = dirname+"/../util/"
+data_dir = dirname+"/../data/"
+sys.path.append(util_dir)
+
 from util import freadlines, triangle
 
 # pseudocode:
@@ -40,7 +46,7 @@ from util import freadlines, triangle
 
 def main():
     rows=[]
-    data=freadlines("./data/smalltriangle.txt")
+    data=freadlines(data_dir+"smalltriangle.txt")
 
     for line in data:
         rows.append([int(i) for i in line.split(" ")])
