@@ -30,3 +30,7 @@ def triangle(rows):
         rows[r][i] = rows[r][i] + max([rows[r+1][i],rows[r+1][i+1]])
 
     return rows[0][0]
+
+def sumDig(n):
+    digits = map(int,str(n))
+    return sum(digits)

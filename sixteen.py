@@ -3,9 +3,7 @@
 # 2^15 = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.
 # What is the sum of the digits of the number 2^1000?
 
-def sumDig(n):
-    digits = map(int,str(n))
-    return sum(digits)
+from util import sumDig
 
 def doubleIt(mstr):
     l=len(mstr)
@@ -33,6 +31,7 @@ def main_alt():
         s=s+int(inpt[i])
     print s
 
+# take advantage of python with large numbers
 def main():
     print sumDig(2**1000)
 
