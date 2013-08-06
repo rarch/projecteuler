@@ -4,8 +4,12 @@
 
 import Data.List (union)
 
-one_alt :: Int
-one_alt = sum (union [3,6..999] [5,10..999])
+one' :: Int
+one' = sum (union [3,6..999] [5,10..999])
 
 one :: Int
 one  = sum [x | x <- [1..999], x `mod` 3 == 0 || x `mod` 5 == 0]
+
+main = do
+    let result = one
+    print result

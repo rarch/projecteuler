@@ -2,11 +2,14 @@
 --1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 --By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-two :: Int
-two = sum [ x | x <- takeWhile (<= 4000000) fibs, even x]
+--use ghci ../util/util.hs two.hs
+--Main.main
 
-fibs = 1 : 1 : zipWith (+) fibs (tail fibs)
+import Util
 
-fibs' = 1 : 1 : next fibs'
-  where
-    next (a : t@(b:_)) = (a+b) : next t
+two :: Integer
+two = sum [ x | x <- takeWhile (<= 4000000) Util.fibs, even x]
+
+main = do
+    let result = two
+    print result
