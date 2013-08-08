@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 # utilities used for solving multiple problems
 
 def factor(mN):
@@ -13,6 +11,14 @@ def factor(mN):
             factors=factors+[(i,times)]
         i,times=i+1,0
     return factors
+
+def generate_factors(n):
+    if (n==1):
+        return []
+    for factor in xrange(2,n+1):
+        if (n%factor==0):
+            break
+    return [factor] + generate_factors(n / factor) 
 
 def fread(fn):
     with open(fn,'r') as f:

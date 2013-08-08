@@ -8,11 +8,11 @@ dirname, filename = os.path.split(os.path.abspath(sys.argv[0]))
 util_dir = dirname+"/../util/"
 sys.path.append(util_dir)
 
-from util import factor
+from util import generate_factors
 
 def main():
     mN=600851475143
-    print [f for (f,x) in (factor(mN))][-1]
+    print generate_factors(mN)[-1]
 
 if __name__ == "__main__":
     main()
