@@ -1,25 +1,25 @@
 HC=ghc
-HC_OPTS=-cpp
+
+HSOUTPUTDIR=hs_output
+HSSUFF=_hs.out
 
 NAME=one
-SRCS=$(NAME).hs
-OBJS=$(NAME).o
-HIS=$(NAME).hi
-
-# will eventually have to separate hs obj files from other obj files
+HSSRC=$(NAME).hs
 
 all: haskell
+rm: rm_haskell
+clean: clean_haskell
 	
 haskell: $(NAME)
-$(NAME): $(SRCS)
+$(NAME): $(HSSRC)
 	@rm -f $@
-	$(HC) --make $@ -o $(NAME)
+	$(HC) --make $@ -o $(NAME)$(HSSUFF) -outputdir $(HSOUTPUTDIR)
 
-clean:
-	rm -f $(OBJS) $(HIS)
+clean_haskell:
+	rm -rf $(HSOUTPUTDIR)
 	
-rm:
+rm_haskell:
 	@make clean
-	rm -f $(NAME)
+	rm -f $(NAME)$(HSSUFF)
 
-.PHONY: all clean haskell rm
+.PHONY: all clean haskell rm clean_haskell rm_haskell
