@@ -4,23 +4,21 @@
 # 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-class Two
-    MAX = 4000000
-    end
+MAX = 4000000
 
 def main
     a,b=1,1
     mSum=0
 
-    while (a<Two::MAX)
+    while (a<MAX)
         if (0==a%2)
             mSum=mSum+a
-            end
-        b,a=b+a,b
         end
-    puts mSum
+        b,a=b+a,b
     end
+    puts mSum
+end
 
 if __FILE__==$0
     main()
-    end
+end
