@@ -1,9 +1,9 @@
 #!/bin/bash
-dir="./.."
 
-data="./../data"
-solutions="./../solutions"
-util="./../util"
+dir="."
+data=$dir"/data"
+solutions=$dir"/solutions"
+util=$dir"/util"
 
 Extensions=( "py" "rb" )
 

@@ -14,7 +14,11 @@ OBJS=$(OBJ) $(UTILDIR)/$(UTIL).o
 HI=$(NAME).hi
 HIS=$(HI) $(UTILDIR)/$(UTIL).hi
 
-all: $(NAME)
+# will eventually have to separate hs obj files from other obj files
+
+all: haskell
+
+haskell: $(NAME)
 $(NAME): $(SRCS)
 	@rm -f $@
 	@# $(HC) --make $(SRCS) -o $(NAME)

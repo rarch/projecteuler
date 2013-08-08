@@ -6,7 +6,11 @@ SRCS=$(NAME).hs
 OBJS=$(NAME).o
 HIS=$(NAME).hi
 
-all: $(NAME)
+# will eventually have to separate hs obj files from other obj files
+
+all: haskell
+	
+haskell: $(NAME)
 $(NAME): $(SRCS)
 	@rm -f $@
 	$(HC) --make $@ -o $(NAME)
@@ -18,4 +22,4 @@ rm:
 	@make clean
 	rm -f $(NAME)
 
-.PHONY: clean all rm
+.PHONY: all clean haskell rm
