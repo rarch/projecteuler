@@ -67,7 +67,7 @@ def main():
                 maxprod,maxfactors=cand,factors
                 
     # right descending products
-    for row in xrange(0,dim-multiplicands+1):
+    for row in xrange(0,dim-(multiplicands-1)):
         for col in xrange(0,dim-(multiplicands-1)):
             cand,factors=1,[]
             for i in xrange(0,multiplicands):

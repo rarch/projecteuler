@@ -1,5 +1,15 @@
 # utilities used for solving multiple problems
 
+numbers={0:"",1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",8:"eight",9:"nine",10:"ten",\
+    11:"eleven",12:"twelve",13:"thirteen",14:"fourteen",15:"fifteen",16:"sixteen",17:"seventeen",\
+    18:"eighteen",19:"nineteen",20:"twenty",30:"thirty",40:"forty",50:"fifty",60:"sixty",70:"seventy",\
+    80:"eighty",90:"ninety",100:"hundred",1000:"thousand",1000000:"million",1000000000:"billion",\
+    1000000000000:"trillion",1000000000000000:"quadrillion",1000000000000000000:"sextillion",\
+    1000000000000000000000:"septillion",1000000000000000000000000:"octillion"}
+
+thouPowers={0:"",1:"thousand",2:"million",3:"billion",4:"trillion",5:"quadrillion",6:"quintillion",7:"sextillion",\
+    8:"septillion",9:"octillion"}
+
 def factor(mN):
     i,times,factors=2,0,[]
     while mN>1:
@@ -12,14 +22,6 @@ def factor(mN):
         i,times=i+1,0
     return factors
 
-def generate_factors(n):
-    if (n==1):
-        return []
-    for factor in xrange(2,n+1):
-        if (n%factor==0):
-            break
-    return [factor] + generate_factors(n / factor) 
-
 def fread(fn):
     with open(fn,'r') as f:
         data=f.read()
@@ -30,39 +32,13 @@ def freadlines(fn):
         lines=f.readlines()
     return lines
 
-# returns max sum of a path down a triangle of ints shaped like pascal's traingle
-def triangle(rows):
-    for r,i in [(r,i) for r in xrange(len(rows)-2,-1,-1) for i in xrange(0,r+1)]:
-        rows[r][i] = rows[r][i] + max([rows[r+1][i],rows[r+1][i+1]])
-
-    return rows[0][0]
-
-def sumDig(n):
-    digits = map(int,str(n))
-    return sum(digits)
-
-numbers={0:"",1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",8:"eight",9:"nine",10:"ten",\
-    11:"eleven",12:"twelve",13:"thirteen",14:"fourteen",15:"fifteen",16:"sixteen",17:"seventeen",\
-    18:"eighteen",19:"nineteen",20:"twenty",30:"thirty",40:"forty",50:"fifty",60:"sixty",70:"seventy",\
-    80:"eighty",90:"ninety",100:"hundred",1000:"thousand",1000000:"million",1000000000:"billion",\
-    1000000000000:"trillion",1000000000000000:"quadrillion",1000000000000000000:"sextillion",\
-    1000000000000000000000:"septillion",1000000000000000000000000:"octillion"}
-
-thouPowers={0:"",1:"thousand",2:"million",3:"billion",4:"trillion",5:"quadrillion",6:"quintillion",7:"sextillion",\
-    8:"septillion",9:"octillion"}
-
-def upto99(n):
-    if n in numbers.keys():
-        return numbers[n]
-    return "-".join([numbers[(n/10)*10],numbers[n%10]])
-
-def upto999(n,delim=None):
-    if n<100:
-        return upto99(n)
-    if not n%100:
-        return " ".join([numbers[n/100],numbers[100]])
-    return " ".join([numbers[n/100],numbers[100], delim ,upto99(n%100)]) if delim else \
-        " ".join([numbers[n/100],numbers[100],upto99(n%100)])
+def generate_factors(n):
+    if (n==1):
+        return []
+    for factor in xrange(2,n+1):
+        if (n%factor==0):
+            break
+    return [factor] + generate_factors(n / factor) 
 
 def nonZeroToWord(n,delim=None):
     if n<0:
@@ -82,3 +58,27 @@ def nonZeroToWord(n,delim=None):
 
 def numToWord(n,delim=None):
     return nonZeroToWord(n,delim) if n else "zero"
+
+def sumDig(n):
+    digits = map(int,str(n))
+    return sum(digits)
+
+# returns max sum of a path down a triangle of ints shaped like pascal's traingle
+def triangle(rows):
+    for r,i in [(r,i) for r in xrange(len(rows)-2,-1,-1) for i in xrange(0,r+1)]:
+        rows[r][i] = rows[r][i] + max([rows[r+1][i],rows[r+1][i+1]])
+
+    return rows[0][0]
+
+def upto99(n):
+    if n in numbers.keys():
+        return numbers[n]
+    return "-".join([numbers[(n/10)*10],numbers[n%10]])
+
+def upto999(n,delim=None):
+    if n<100:
+        return upto99(n)
+    if not n%100:
+        return " ".join([numbers[n/100],numbers[100]])
+    return " ".join([numbers[n/100],numbers[100], delim ,upto99(n%100)]) if delim else \
+        " ".join([numbers[n/100],numbers[100],upto99(n%100)])

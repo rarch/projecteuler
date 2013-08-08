@@ -4,9 +4,9 @@
 # Find the sum of all the primes below two million.
 
 # faster sieve, similar to the one in seven
-def quicksieve(maxval):
+def quicksieve(lim):
     cand,primes=3,[2]
-    while cand<maxval:
+    while cand<lim:
         if not primes:
             primes=[cand]
         for p in primes:
