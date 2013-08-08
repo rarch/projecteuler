@@ -40,3 +40,45 @@ def triangle(rows):
 def sumDig(n):
     digits = map(int,str(n))
     return sum(digits)
+
+numbers={0:"",1:"one",2:"two",3:"three",4:"four",5:"five",6:"six",7:"seven",8:"eight",9:"nine",10:"ten",\
+    11:"eleven",12:"twelve",13:"thirteen",14:"fourteen",15:"fifteen",16:"sixteen",17:"seventeen",\
+    18:"eighteen",19:"nineteen",20:"twenty",30:"thirty",40:"forty",50:"fifty",60:"sixty",70:"seventy",\
+    80:"eighty",90:"ninety",100:"hundred",1000:"thousand",1000000:"million",1000000000:"billion",\
+    1000000000000:"trillion",1000000000000000:"quadrillion",1000000000000000000:"sextillion",\
+    1000000000000000000000:"septillion",1000000000000000000000000:"octillion"}
+
+thouPowers={0:"",1:"thousand",2:"million",3:"billion",4:"trillion",5:"quadrillion",6:"quintillion",7:"sextillion",\
+    8:"septillion",9:"octillion"}
+
+def upto99(n):
+    if n in numbers.keys():
+        return numbers[n]
+    return "-".join([numbers[(n/10)*10],numbers[n%10]])
+
+def upto999(n,delim=None):
+    if n<100:
+        return upto99(n)
+    if not n%100:
+        return " ".join([numbers[n/100],numbers[100]])
+    return " ".join([numbers[n/100],numbers[100], delim ,upto99(n%100)]) if delim else \
+        " ".join([numbers[n/100],numbers[100],upto99(n%100)])
+
+def nonZeroToWord(n,delim=None):
+    if n<0:
+        return " ".join(['negative',nonZeroToWord(-n,delim)])
+    if n<1000:
+        return upto999(n,delim)
+
+    l=len(str(n))
+    divisor,i=1000,1
+    while (n/divisor)>1000:
+        divisor=divisor*1000
+        i=i+1
+
+    return " ".join([upto999((n/divisor),delim),\
+                     thouPowers[i],\
+                     nonZeroToWord(n-divisor*(n/divisor),delim)])
+
+def numToWord(n,delim=None):
+    return nonZeroToWord(n,delim) if n else "zero"

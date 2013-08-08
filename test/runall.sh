@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dir="."
+dir=".."
 data=$dir"/data"
 solutions=$dir"/solutions"
 util=$dir"/util"
