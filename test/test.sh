@@ -1,5 +1,5 @@
 #!/bin/bash
-# will test all project euler problems and makefiles
+# will run my project euler problem solutions
 
 TESTHOME=$PWD
 PROJECT=$TESTHOME/".."
@@ -8,22 +8,25 @@ EXTENSIONS=( "py" "rb" )
 DOTHS=".hs"
 HSSUFF="_hs.out"
 MAKEFILE="Makefile"
-PRE=">>>\t"
+README="README.md"
+PREFIX=">>>\t"
 
 directories=()
 
-echo -e "${PRE}GETTING LIST OF DIRECTORIES"
+[ -f $PROJECT/$README ] || { echo ; echo no readme ; exit 1 ; }
+
+echo -e "${PREFIX}GETTING LIST OF DIRECTORIES"
 # go through all project euler problems 1..434, convert number to string
 for i in $(seq 1 $PROBS)
 do
-    subdir=$($TESTHOME/numword.py $i)
+    subdir=$($TESTHOME/numword.py $i) # subdir=$($TESTHOME/numword.sh $i) # in progress
     if [ -d $PROJECT/$subdir ]; then
         directories+=("$subdir")
     fi
 done
-echo -e "${PRE}GOT"
+echo -e "${PREFIX}GOT"
 
-echo -e "${PRE}TESTING FILES"
+echo -e "${PREFIX}TESTING FILES"
 for subdir in ${directories[@]}
 do
     echo
@@ -38,11 +41,9 @@ do
         if [ -x $file ]; then
             for acceptable in ${EXTENSIONS[@]}
             do
-                if [ "$ext" = "$acceptable" ]; then
-                # && [ "$filename" = "$subdir" ]; then
-                    output=$($file) #should check output against value, get this from README
-                    echo -ne " "$filebasename
-                    echo -ne "="$output
+                if [ "$ext" = "$acceptable" ]; then # && [ "$filename" = "$subdir" ]; then
+                    output=$($file) || { echo ; echo $filebasename ; exit 2 ; } #should check output against value, get this from README
+                    echo -ne " "$filebasename"="$output
                 fi
             done
         fi
@@ -55,22 +56,21 @@ do
         filebasename=$(basename "$PROJECT/$subdir/$subdir$DOTHS")
         if [ -f $PROJECT/$subdir/$subdir$DOTHS ]; then
 
-            # echo
-            # echo -e "${PRE}MAKING $HSSUFF FROM $DOTHS"
-            make rm -s
-            make -s > /dev/null 2>&1 # do not print messy output from makefile
-            make clean -s
-            # echo -e "${PRE}MADE"
+            # echo ; echo -e "${PREFIX}MAKING $HSSUFF FROM $DOTHS"
+            make rm -s || { echo ; echo make rm ; exit 3 ; }
+            make -s > /dev/null 2>&1 || { echo ; echo make ; exit 4 ; } # do not print messy output from makefile
+            make clean -s || { echo ; echo make clean ; exit 5 ; }
+            # echo -e "${PREFIX}MADE"
 
-            output=$($PROJECT/$subdir/$subdir$HSSUFF) #should check output against value, get this from README
-            
-            make rm -s
+            output=$($PROJECT/$subdir/$subdir$HSSUFF) || { echo ; echo $filebasename ; exit 2 ; } #should check output against value, get this from README
+            echo -ne " "$filebasename"="$output
 
-            echo -ne " "$filebasename
-            echo -ne "="$output
+            make rm -s || { echo ; echo make rm ; exit 3 ; }
+            echo -n " ; make works ; "
         fi
         cd $TESTHOME
     fi
     echo
 done
 echo -e "${PRE}COMPLETE"
+exit 0
