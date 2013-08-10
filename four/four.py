@@ -19,7 +19,8 @@ def main_alt():
     print (lambda e:(e[0],e[1],e[0]*e[1])) (max(multiples, key=lambda (a,b): a*b))[-1]
 
 def main():
-    print max( a*b for a, b in product(xrange(100,1000), repeat=2) if palindromic(a*b) )
+    # palindromic = lambda n: str(n)==str(n)[::-1]
+    print max( a*b for a, b in product(xrange(100,1000), repeat=2) if str(a*b)==str(a*b)[::-1] ) #palindromic(a*b))
 
 if __name__ == "__main__":
     main()
