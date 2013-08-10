@@ -16,7 +16,7 @@ def main
         end
         b,a=b+a,b
     end
-    puts mSum
+    puts mSum.to_s
 end
 
 if __FILE__==$0

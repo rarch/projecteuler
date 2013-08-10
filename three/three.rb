@@ -13,7 +13,7 @@ N = 600851475143
 
 def main
     largest=Util::generate_factors(N)[-1]
-    puts "#{largest}"
+    puts "#{largest}" # print largest # puts largest.to_s
 end
 
 if __FILE__==$0
